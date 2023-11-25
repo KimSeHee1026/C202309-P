@@ -375,7 +375,7 @@ const char *Lessons[] = {
     "꽃은 꽃이 되라고 하지 않았고 나도 내가 되라고 하지 않았다. -커트 보네거트",
     "모든 꽃을 자를 수는 있지만 봄이 오는 것을 막을 순 없습니다. - 파블로 네루다"};
 
-//테마 별 꽃 리스트 저장 (2차원 배열로 바꿔야 하는데)
+//테마 별 꽃 리스트 저장 
 const char* theme_friend[][2] = {
     {"라일락(보라색)", "친구의 사랑, 젊은 날의 추억"},
     {"측백", "변함없는 우정"},
@@ -534,42 +534,69 @@ void findBirthFlower(int month, int day) {
 
 
 int main() {
-  int month, day;
+    int month, day;
 
-  printf("생일을 입력하세요 (월 일): ");
-  scanf_s("%d월 %d일", &month, &day);
-
-
-  if (month >= 1 && month <= 12) {
-        if (day >= 1 && day <= 31) {
-          findBirthFlower(month, day);
+    while (1) {
+        printf("생일을 입력하세요 (월 일): ");
+        int inputResult = scanf_s("%d월 %d일", &month, &day);
+        // scanf_s가 두 개의 정수를 성공적으로 읽었는지 확인
+        if (inputResult == 2) {
+            if (month >= 1 && month <= 12) {
+                if (day >= 1 && day <= 31) {
+                    findBirthFlower(month, day);
+                    break; // 입력이 유효하면 루프를 종료합니다.
+                }
+                else {
+                    printf("올바른 일을 입력해주세요.\n");
+                    continue;
+                }
+            }
+            else {
+                printf("올바른 월을 입력해주세요.\n");
+                continue;
+            }
         }
         else {
-          printf("올바른 일을 입력해주세요.\n"); //다시 입력하는거 하고 싶은데..?_? while True 무한 반복문을 쓰면 어떨까
+            // 잘못된 입력 형식일 경우 입력 버퍼를 비웁니다.
+            while (getchar() != '\n');
+            printf("올바른 형식으로 입력해주세요.\n");
+            continue;
         }
-  } else {
-        printf("올바른 월을 입력해주세요.\n");
-  }
+    }
 
-  char user_lesson;
-  printf("\n\n ---------------------------------------------------\n\n");
-  printf("오늘의 꽃 교훈을 알려드릴까요? (좋으면 \"Y\", 싫으면 \"N\"): ");
-  scanf_s(" %c", &user_lesson, 1);
+    while (1) {
+        char user_lesson;
+        printf("\n\n ---------------------------------------------------\n\n");
+        printf("오늘의 꽃 교훈을 알려드릴까요? (좋으면 \"Y\", 싫으면 \"N\"): ");
+        scanf_s(" %c", &user_lesson, 1);
 
-  if (user_lesson == 'Y') {
-        LessonList();
-  }
-  else if (user_lesson == 'N') { 
-      printf("괜찮아요 ! 그런 날도 있는 걸요!");
-  }
-  else {
-      printf("잘못입력하셨습니다."); //여기도 while 문 쓰기!
-  }
-  
+        if (user_lesson == 'Y') {
+            LessonList();
+            break;
+        }
+        else if (user_lesson == 'N') {
+            printf("괜찮아요 ! 그런 날도 있는 걸요!");
+            break;
+        }
+        else {
+            printf("잘못입력하셨습니다."); //여기도 while 문 쓰기!
+        }
+
+    }
+
+    //기능 2 (2차원 배열만 만들어 논 상태)
+    char user_theme; //사용자에게 테마를 선정 할 문자를 저장 받을 변수 생성
+    printf("\n\n ---------------------------------------------------\n\n");
+    printf(" 우정 | 사랑 | 응원 | 감사 | 격려 중 선물해 줄 사람에게 맞는 테마를 골라주세요!");
+    scanf_s("%s", &user_theme, int(sizeof(user_theme));
+
+    if (user_theme == "우정" || user_theme == "사랑" || user_theme == "응원" || user_theme == "감사" || user_theme == "격려") {
+        comeuser_theme(user_theme); //함수 미완성
+    }
+    else {
+        printf("") //미완성
+    }
 
 
-
-  return 0;
+    return 0;
 }
-
-//기능 1 사용자가 태어난 달에 탄생화를 알려줌
