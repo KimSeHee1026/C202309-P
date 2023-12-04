@@ -1,4 +1,7 @@
-#include <stdio.h> //사진 넣는 방법이 없을까?
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 //탄생화를 저장해놓은 2차원 배열
 const char *januaryFlowers[][2] = {{"스노드롭", "희망"},
                                    {"노랑수선화", "사랑에 답하여"},
@@ -375,40 +378,41 @@ const char *Lessons[] = {
     "꽃은 꽃이 되라고 하지 않았고 나도 내가 되라고 하지 않았다. -커트 보네거트",
     "모든 꽃을 자를 수는 있지만 봄이 오는 것을 막을 순 없습니다. - 파블로 네루다"};
 
-//테마 별 꽃 리스트 저장 
+//테마 리스트
 const char* theme_friend[][2] = {
     {"라일락(보라색)", "친구의 사랑, 젊은 날의 추억"},
     {"측백", "변함없는 우정"},
     {"장미(노란색)", "우정"},
     {"바이올렛", "영원한 우정"}
-}
+};
 const char* theme_love[][2] = {
     {"리시안셔스", "변치않는 사랑"},
     {"튤립(빨간색)", "사랑을 고백하다"},
     {"소국(보라색)", "내 모든것을 그대에게"},
     {"장미(빨간색)", "열렬한 사랑"}
-}
+};
 const char* theme_cheer[][2] = {
     {"프리지아(노란색)", "당신의 시작을 응원합니다"},
     {"장미(노란색)", "응원"},
     {"메리골드(노란색)", "반드시 오고야 말 행복"},
     {"솔리다고", "성공을 기원합니다"}
-}
+};
 const char* theme_thank[][2] = {
     {"장미(진핑크)", "깊은 감사드립니다!"},
     {"캄파눌라", "감사합니다"},
     {"장미(핑크)", "당신을 존경합니다"},
     {"초롱꽃", "은혜를 보답하려는 마음"}
-}
+};
 const char* theme_sad[][2] = {
     {"양귀비", "위로, 위안"},
     {"크랜베리", "마음의 고통을 위로하다"},
     {"용담", "위로가 되어주는"},
     {"안개꽃", "슬픔"}
-}
+};
+
 
 void LessonList(void) { 
-  // 랜덤 수를 뽑는 함수 아직 안배움 --> 미리 4로 배정
+  // 랜덤 수를 뽄는 함수 아직 안배움 --> 미리 4로 배정
   int randomnum = 4;
   printf("-------------------------------------------\n\n\n");
   printf(" %s", Lessons[randomnum]);
@@ -531,72 +535,92 @@ void findBirthFlower(int month, int day) {
           break;
     }
 }
+void comeuser_theme(int user_theme) {
+        int random_num = rand() % 4; //랜덤 함수 모르는 관계로 2로 미리 저장
+        const char* flower = NULL;
+        const char* meaning = NULL;
+
+        // 테마 별 확인하는 조건문
+        if (user_theme == 1) {
+            flower = theme_friend[random_num][0];
+            meaning = theme_friend[random_num][1];
+            printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        }
+        else if (user_theme == 2) {
+            flower = *theme_love[random_num][0];
+            meaning = *theme_love[random_num][1];
+            printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        }
+        else if (user_theme == 3) {
+            flower = *theme_cheer[random_num][0];
+            meaning = *theme_cheer[random_num][1];
+            printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        }
+        else if (user_theme == 4) {
+            flower = *theme_thank[random_num][0];
+            meaning = *theme_thank[random_num][1];
+            printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        }
+        else if (user_theme == 5) {
+            flower = *theme_sad[random_num][0];
+            meaning = *theme_sad[random_num][1];
+            printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        }
+    }
 
 
 int main() {
-    int month, day;
+  // 사용자의 탄생일에 맞는 탄생화를 알려주는 기능
+  int month, day;
 
-    while (1) {
-        printf("생일을 입력하세요 (월 일): ");
-        int inputResult = scanf_s("%d월 %d일", &month, &day);
-        // scanf_s가 두 개의 정수를 성공적으로 읽었는지 확인
-        if (inputResult == 2) {
-            if (month >= 1 && month <= 12) {
-                if (day >= 1 && day <= 31) {
-                    findBirthFlower(month, day);
-                    break; // 입력이 유효하면 루프를 종료합니다.
-                }
-                else {
-                    printf("올바른 일을 입력해주세요.\n");
-                    continue;
-                }
-            }
-            else {
-                printf("올바른 월을 입력해주세요.\n");
-                continue;
-            }
+  printf("생일을 입력하세요 (월 일): ");
+  scanf_s("%d월 %d일", &month, &day);
+
+  if (month >= 1 && month <= 12) {
+        if (day >= 1 && day <= 31) {
+          findBirthFlower(month, day);
         }
         else {
-            // 잘못된 입력 형식일 경우 입력 버퍼를 비웁니다.
-            while (getchar() != '\n');
-            printf("올바른 형식으로 입력해주세요.\n");
-            continue;
+          printf("올바른 일을 입력해주세요.\n");
         }
-    }
+  } else {
+        printf("올바른 월을 입력해주세요.\n");
+  }
 
-    while (1) {
-        char user_lesson;
-        printf("\n\n ---------------------------------------------------\n\n");
-        printf("오늘의 꽃 교훈을 알려드릴까요? (좋으면 \"Y\", 싫으면 \"N\"): ");
-        scanf_s(" %c", &user_lesson, 1);
+  // 사용자가 원하는 테마를 골라 선물할 꽃을 추천해주는 기능
+  int user_theme;
 
-        if (user_lesson == 'Y') {
-            LessonList();
-            break;
-        }
-        else if (user_lesson == 'N') {
-            printf("괜찮아요 ! 그런 날도 있는 걸요!");
-            break;
-        }
-        else {
-            printf("잘못입력하셨습니다."); //여기도 while 문 쓰기!
-        }
-
-    }
-
-    //기능 2 (2차원 배열만 만들어 논 상태)
-    char user_theme; //사용자에게 테마를 선정 할 문자를 저장 받을 변수 생성
-    printf("\n\n ---------------------------------------------------\n\n");
-    printf(" 우정 | 사랑 | 응원 | 감사 | 격려 중 선물해 줄 사람에게 맞는 테마를 골라주세요!");
-    scanf_s("%s", &user_theme, int(sizeof(user_theme));
-
-    if (user_theme == "우정" || user_theme == "사랑" || user_theme == "응원" || user_theme == "감사" || user_theme == "격려") {
-        comeuser_theme(user_theme); //함수 미완성
-    }
-    else {
-        printf("") //미완성
-    }
+  printf("""\n\n --------------------------------------------------------------------------------------\n\n");
+  printf("1.우정\n2.사랑\n3.응원\n4.감사\n5.격려\n \" 총 5가지 테마중 선물할 꽃의 분위기에 맞는 테마를 골라 주세요!\n"); 
+  scanf_s("%d", &user_theme);
+  getchar();
 
 
-    return 0;
+  if (user_theme == 1 || user_theme == 2 || user_theme == 3 || user_theme == 4|| user_theme == 5) {
+      comeuser_theme(user_theme);
+  }
+  else {
+      printf("잘못입력하셨습니다. 다시 입력해주세요: ");
+  } //While문 미작용
+
+
+  // 꽃점 보는 기능
+  char user_lesson;
+  printf("\n\n ---------------------------------------------------\n\n");
+  printf("오늘의 꽃 교훈을 알려드릴까요? (좋으면 \"Y\", 싫으면 \"N\"): ");
+  scanf_s(" %c", &user_lesson, 1);
+
+  if (user_lesson == 'Y') {
+        LessonList();
+  }
+  else if (user_lesson == 'N') { 
+      printf("괜찮아요 ! 그런 날도 있는 걸요!");
+  }
+  else {
+      printf("잘못입력하셨습니다.");
+  }
+        
+  return 0;
 }
+
+//기능 1 사용자가 태어난 달에 탄생화를 알려줌
