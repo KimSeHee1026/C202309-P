@@ -1,13 +1,13 @@
-#include "theme.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void comeuser_theme(int user_theme) {
+    //테마 리스트 정의
     const char* theme_friend[][2] = {
-    {"라일락(보라색)", "친구의 사랑, 젊은 날의 추억"},
-    {"측백", "변함없는 우정"},
-    {"장미(노란색)", "우정"},
-    {"바이올렛", "영원한 우정"}
+   {"라일락(보라색)", "친구의 사랑, 젊은 날의 추억"},
+   {"측백", "변함없는 우정"},
+   {"장미(노란색)", "우정"},
+   {"바이올렛", "영원한 우정"}
     };
     const char* theme_love[][2] = {
         {"리시안셔스", "변치않는 사랑"},
@@ -34,34 +34,37 @@ void comeuser_theme(int user_theme) {
         {"안개꽃", "슬픔"}
     };
 
-    int random_num = rand() % 4; //랜덤 함수 모르는 관계로 2로 미리 저장
-    const char* flower = NULL;
-    const char* meaning = NULL;
+    //변수 정의
+    const char* theme_flower = NULL; 
+    const char* theme_meaning = NULL;
+
+    //랜덤 숫자 
+    int random_num = rand() % 4;
 
     // 테마 별 확인하는 조건문
     if (user_theme == 1) {
-        flower = theme_friend[random_num][0];
-        meaning = theme_friend[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        theme_flower = theme_friend[random_num][0];
+        theme_meaning = theme_friend[random_num][1];
+        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
     }
     else if (user_theme == 2) {
-        flower = *theme_love[random_num][0];
-        meaning = *theme_love[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        theme_flower = *theme_love[random_num][0];
+        theme_meaning = *theme_love[random_num][1];
+        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
     }
     else if (user_theme == 3) {
-        flower = *theme_cheer[random_num][0];
-        meaning = *theme_cheer[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        theme_flower = *theme_cheer[random_num][0];
+        theme_meaning = *theme_cheer[random_num][1];
+        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
     }
     else if (user_theme == 4) {
-        flower = *theme_thank[random_num][0];
-        meaning = *theme_thank[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        theme_flower = *theme_thank[random_num][0];
+        theme_meaning = *theme_thank[random_num][1];
+        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
     }
     else if (user_theme == 5) {
-        flower = *theme_sad[random_num][0];
-        meaning = *theme_sad[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", flower, meaning);
+        theme_flower = *theme_sad[random_num][0];
+        theme_meaning = *theme_sad[random_num][1];
+        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
     }
 }
