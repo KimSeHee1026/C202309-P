@@ -3,28 +3,24 @@
 #include <string.h>
 #include "userInfo.h"
 
-void initializeUser(struct userInfo* user) {
-    while (getchar() != '\n');
+void greeting(void) {
+    struct userInfo user1; 
+    //인삿말
+    printf("-------------------------------------------\n");  
+    printf("'청춘을 꽃과 함께' 프로그램에 오신것을 환영합니다.'\n"); 
+    printf("프로그램의 결과는 사용자님의 파일에 uesr.txt파일로 저장됩니다.\n"); 
+    printf("-------------------------------------------\n\n\n"); 
+      
+    printf("사용자의 이름을 입력해주세요: "); 
+    scanf_s("%s", user1.name, (int)sizeof(user1.name)); 
 
-    printf("사용자의 이름을 입력해주세요: ");
-    scanf_s("%29[^\n]", user->name, );
+    printf("%s님의 파일 이름을 입력해주세요: ", user1.name); 
+    scanf_s("%s", user1.file_name, (int)sizeof(user1.file_name)); 
 
-    printf("%s님의 파일 이름을 입력해주세요: ", user->name);
-    scanf_s("%29s", user->file_name); 
-}
+    printf("\n%s파일로 결과를 출력해드릴께요!\n", user1.file_name); 
+     
+    printf("-------------------------------------------\n"); 
+    printf("★청춘을 꽃처럼★\n"); 
 
-struct userInfo* getUserInfoArray(int num_people) { 
-    struct userInfo* users = (struct userInfo*)malloc(num_people * sizeof(struct userInfo)) ;
-
-    if (users == NULL) {
-        fprintf(stderr, "메모리 할당 실패\n");
-        exit(1);
-    }
-
-    for (int i = 0; i < num_people; ++i) {
-        printf("\n%d번째 사용자 정보 입력\n", i + 1);
-        initializeUser(&users[i]);
-    }
-
-    return users;
+    return user1;
 }

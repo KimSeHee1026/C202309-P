@@ -7,27 +7,20 @@
 #include "userInfo.h"
 
 int main() {
-    //인삿말
-    printf("-------------------------------------------\n");
-    printf("'청춘을 꽃과 함께' 프로그램에 오신것을 환영합니다.'\n");
-    printf("프로그램의 결과는 사용자님의 파일에 uesr.txt파일로 저장됩니다.\n");
-    printf("-------------------------------------------\n\n\n");
-
-    //사용자 이름 받기 
-
+    char userinformation =  char greeting(void);
     while (1) {
         // 사용자 메뉴 출력 및 선택
-        printf("\n%d. %s님의 탄생화를 출력해드릴게요!\n", username);
-        printf("%d. %s님의 상황에 맞는 꽃을 추천해드릴게요!\n", username);
-        printf("%d. %s님의 오늘의 운세와 명언을 보여드릴게요!\n", username);
-        printf("%d. %s님의 근처 꽃집을 알려드릴게요!\n", username);
+        printf("1. %s님의 탄생화를 출력해드릴게요!\n", user1.name);
+        printf("2. %s님의 상황에 맞는 꽃을 추천해드릴게요!\n", user1.name);
+        printf("3. %s님의 오늘의 운세와 명언을 보여드릴게요!\n", user1.name);
+        printf("4. %s님의 근처 꽃집을 알려드릴게요!\n", user1.name);;
         printf("5. 전체 기능을 실행시켜드릴게요!\n");
         printf("6. 프로그램을 종료합니다.\n");
 
         // 사용자의 선택을 받아서 적절한 작업을 수행하는 코드 추가
         int choice;
         printf("원하는 기능을 선택해주세요: ");
-        scanf("%d", &choice);
+        scanf_s("%d", &choice);
 
         // TODO: 선택에 따라 적절한 기능을 수행하는 코드 추가
         if (choice == 1) {
@@ -59,29 +52,26 @@ int main() {
             else {
                 printf("잘못입력하셨습니다. 다시 입력해주세요: ");
             }
-            if (choice == 3) {
-                char user_lesson;
-                printf("\n\n ---------------------------------------------------\n\n");
-                printf("오늘의 꽃점을 보시겠어요? (좋으면 \"Y\", 싫으면 \"N\"): ");
-                scanf_s(" %c", &user_lesson, 1);
+        if (choice == 3) {
+            char user_lesson;
+            printf("\n\n ---------------------------------------------------\n\n");
+            printf("오늘의 꽃점을 보시겠어요? (좋으면 \"Y\", 싫으면 \"N\"): ");
+            scanf_s(" %c", &user_lesson, 1);
 
-                if (user_lesson == 'Y') {
-                    LessonList();
-                }
-                else if (user_lesson == 'N') {
-                    printf("괜찮아요 ! 그런 날도 있는 걸요!");
-                }
-                else {
-                    printf("잘못입력하셨습니다.");
-                }
+            if (user_lesson == 'Y') {
+                LessonList();
             }
-            if (choice == 4) {
-                printf("제작중");
+            else if (user_lesson == 'N') {
+                printf("괜찮아요 ! 그런 날도 있는 걸요!");
             }
-            while (getchar() != '\n');
+            else {
+                printf("잘못입력하셨습니다.");
+            }
         }
-
-  
+        if (choice == 4) {
+            printf("제작중");
+        }
         return 0;
+        }
     }
 }

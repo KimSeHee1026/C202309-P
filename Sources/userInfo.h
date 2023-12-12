@@ -1,8 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 struct userInfo {
-    char name[30];
-    char file_name[30];
+    char name[10]; //이름
+    char file_name[30]; //파일
 };
 
-void initializeUser(struct userInfo* user);
-struct userInfo* getUserInfoArray(int num_people);
+char greeting(void);
 
