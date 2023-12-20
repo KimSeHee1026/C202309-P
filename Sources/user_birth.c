@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void findBirthFlower(int month, int day) {
+void findBirthFlower(int month, int day, char filename, char user_name) {
     //탄생화 리스트 정의
     const char* januaryFlowers[][2] = { {"스노드롭", "희망"},
                                   {"노랑수선화", "사랑에 답하여"},
@@ -374,6 +374,8 @@ void findBirthFlower(int month, int day) {
     const char* flower = NULL;
     const char* meaning = NULL;
 
+    FILE* file;
+    fopen_s(&file, filename, "a");  
     switch (month) {
     case 1:
         arrayLength = sizeof(januaryFlowers) / sizeof(januaryFlowers[0]);
@@ -382,6 +384,9 @@ void findBirthFlower(int month, int day) {
             meaning = januaryFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!",file, user_name,month, day, 
+                flower, meaning); 
+            fclose(file); 
         }
         break;
     case 2:
@@ -391,6 +396,9 @@ void findBirthFlower(int month, int day) {
             meaning = februaryFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day, 
+                flower, meaning);
+            fclose(file);
         }
         break;
     case 3:
@@ -400,6 +408,9 @@ void findBirthFlower(int month, int day) {
             meaning = marchFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,  
+                flower, meaning);
+            fclose(file);
         }
         break;
     case 4:
@@ -409,6 +420,9 @@ void findBirthFlower(int month, int day) {
             meaning = aprilFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning); 
+            fclose(file);
         }
         break;
     case 5:
@@ -418,6 +432,9 @@ void findBirthFlower(int month, int day) {
             meaning = mayFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file); 
         }
         break;
     case 6:
@@ -427,7 +444,10 @@ void findBirthFlower(int month, int day) {
             meaning = juneFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
-        }
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file);  
+        } 
         break;
     case 7:
         arrayLength = sizeof(julyFlowers) / sizeof(julyFlowers[0]);
@@ -436,6 +456,9 @@ void findBirthFlower(int month, int day) {
             meaning = julyFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file);
         }
         break;
     case 8:
@@ -445,6 +468,9 @@ void findBirthFlower(int month, int day) {
             meaning = augustFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file);
         }
         break;
     case 9:
@@ -454,6 +480,9 @@ void findBirthFlower(int month, int day) {
             meaning = septemberFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file);
         }
         break;
     case 10:
@@ -463,6 +492,9 @@ void findBirthFlower(int month, int day) {
             meaning = octoberFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file);
         }
         break;
     case 11:
@@ -472,6 +504,9 @@ void findBirthFlower(int month, int day) {
             meaning = novemberFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file); 
         }
         break;
     case 12:
@@ -481,7 +516,12 @@ void findBirthFlower(int month, int day) {
             meaning = decemberFlowers[day - 1][1];
             printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
                 flower, meaning);
+            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
+                flower, meaning);
+            fclose(file);
         }
         break;
     }
+
+
 }

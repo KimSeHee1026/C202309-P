@@ -35,7 +35,7 @@ int main() {
 
                 if (month >= 1 && month <= 12) {
                     if (day >= 1 && day <= 31) {
-                        findBirthFlower(month, day);
+                        findBirthFlower(month, day, user1.file_name, user1.name);
                         break; // 올바른 입력일 경우 반복문 탈출
                     }
                     else {
