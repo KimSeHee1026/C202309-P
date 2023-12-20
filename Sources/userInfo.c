@@ -3,8 +3,9 @@
 #include <string.h>
 #include "userInfo.h"
 
-void greeting(void) {
+struct userInfo greeting(void) {
     struct userInfo user1; 
+
     //인삿말
     printf("-------------------------------------------\n");  
     printf("'청춘을 꽃과 함께' 프로그램에 오신것을 환영합니다.'\n"); 
@@ -20,7 +21,7 @@ void greeting(void) {
     printf("\n%s파일로 결과를 출력해드릴께요!\n", user1.file_name); 
      
     printf("-------------------------------------------\n"); 
-    printf("★청춘을 꽃처럼★\n"); 
+    printf("★청춘을 꽃처럼★"); 
 
     return user1;
 }

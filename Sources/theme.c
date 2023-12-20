@@ -67,4 +67,6 @@ void comeuser_theme(int user_theme) {
         theme_meaning = *theme_sad[random_num][1];
         printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
     }
+
+    return 1;
 }

@@ -7,5 +7,5 @@ struct userInfo {
     char file_name[30]; //ÆÄÀÏ
 };
 
-char greeting(void);
+struct userInfo greeting(void);
 
