@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define MAX_REGION_LENGTH 20
-#define MAX_FLOWER_SHOPS_PER_REGION 
+#define MAX_FLOWER_SHOPS_PER_REGION 3
 #define MAX_REGIONS 3
 #define MAX_FLOWER_SHOPS (MAX_FLOWER_SHOPS_PER_REGION * MAX_REGIONS)
 
@@ -12,7 +12,7 @@ typedef struct {
     char* location;
 } FlowerShop;
 
-FlowerShop flowerShopsData[] = {
+FlowerShop flowerShopsData[] = { 
      {"아뜰리에온화 [장동로 1 장동로 1번길 1층]", "동구"},
     {"플로렌 [ 동명로 26번길 15-1 1층]", "동구"},
     {"꽃디 [동명로 35 1층]", "동구"},
@@ -66,6 +66,7 @@ void provideFlowerShop(void) {
     getNearbyFlowerShops(userRegion, nearbyShops);
 
     printf("가까운 꽃집 추천 리스트:\n");
+
     for (int i = 0; i < MAX_FLOWER_SHOPS_PER_REGION; ++i) {
         printf("%d. %s (%s)\n", i + 1, nearbyShops[i].name, nearbyShops[i].location);
         // TODO: 꽃집에 관련된 필요한 정보 출력
