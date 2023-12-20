@@ -1,5 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void provideFlowerShop(void);
+void provideFlowerShop(const char* user_name, const char* filename);
 

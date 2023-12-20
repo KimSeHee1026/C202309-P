@@ -1,1 +1,1 @@
-void findBirthFlower(int month, int day, char filename, char user_name);
+void findBirthFlower(int month, int day, const char* filename, const char* user_name);

@@ -26,7 +26,6 @@ int main() {
         printf("원하는 기능을 선택해주세요: ");
         scanf_s("%d", &choice);
 
-        // TODO: 선택에 따라 적절한 기능을 수행하는 코드 추가
         if (choice == 1) {
             int month, day;
             do {
@@ -51,11 +50,12 @@ int main() {
             int user_theme;
             do {
                 printf("\n\n --------------------------------------------------------------------------------------\n\n");
-                printf("1.우정\n2.사랑\n3.응원\n4.감사\n5.격려\n \" 총 5가지 테마중 선물할 꽃의 분위기에 맞는 테마를 골라 주세요!: ");
+                printf("1.우정\n2.사랑\n3.응원\n4.감사\n5.격려\n 총 5가지 테마중 선물할 꽃의 분위기에 맞는 테마를 골라 주세요!: ");
                 scanf_s("%d", &user_theme);
+                getchar();
 
                 if (user_theme <= 5 && user_theme >= 1) {
-                    comeuser_theme(user_theme);
+                    comeuser_theme(user_theme, user1.file_name, user1.name);
                     break; // 올바른 입력일 경우 반복문 탈출
                 }
                 else {
@@ -71,7 +71,7 @@ int main() {
                 scanf_s(" %c", &user_lesson, 1);
 
                 if (user_lesson == 'Y') {
-                    LessonList();
+                    LessonList(user1.name, user1.file_name);
                     break; // 올바른 입력일 경우 반복문 탈출
                 }
                 else if (user_lesson == 'N') {
@@ -84,14 +84,14 @@ int main() {
             } while (1); // 무한 루프를 돌면서 사용자가 올바른 입력을 할 때까지 계속 반복
         }
         else if (choice == 4) {
-            provideFlowerShop();
+            provideFlowerShop(user1.name, user1.file_name);
             getchar();
         }
         else if (choice == 5) {
             break; // 프로그램 종료
         }
         else {
-            printf("잘못된 선택입니다.\n"); 
+            printf("잘못된 선택입니다.\n");
         }
     }
 

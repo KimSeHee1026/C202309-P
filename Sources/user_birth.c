@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void findBirthFlower(int month, int day, char filename, char user_name) {
+void findBirthFlower(int month, int day, const char* filename, const char* user_name) {
     //탄생화 리스트 정의
     const char* januaryFlowers[][2] = { {"스노드롭", "희망"},
                                   {"노랑수선화", "사랑에 답하여"},
@@ -375,153 +375,134 @@ void findBirthFlower(int month, int day, char filename, char user_name) {
     const char* meaning = NULL;
 
     FILE* file;
-    fopen_s(&file, filename, "a");  
-    switch (month) {
-    case 1:
-        arrayLength = sizeof(januaryFlowers) / sizeof(januaryFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = januaryFlowers[day - 1][0];
-            meaning = januaryFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!",file, user_name,month, day, 
-                flower, meaning); 
-            fclose(file); 
+
+    if (fopen_s(&file, filename, "a") == 0) {
+        // 파일이 성공적으로 열렸을 때만 실행됨
+        switch (month) {
+        case 1:
+            arrayLength = sizeof(januaryFlowers) / sizeof(januaryFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = januaryFlowers[day - 1][0];
+                meaning = januaryFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 2:
+            arrayLength = sizeof(februaryFlowers) / sizeof(februaryFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = februaryFlowers[day - 1][0];
+                meaning = februaryFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 3:
+            arrayLength = sizeof(marchFlowers) / sizeof(marchFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = marchFlowers[day - 1][0];
+                meaning = marchFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 4:
+            arrayLength = sizeof(aprilFlowers) / sizeof(aprilFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = aprilFlowers[day - 1][0];
+                meaning = aprilFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 5:
+            arrayLength = sizeof(mayFlowers) / sizeof(mayFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = mayFlowers[day - 1][0];
+                meaning = mayFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 6:
+            arrayLength = sizeof(juneFlowers) / sizeof(juneFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = juneFlowers[day - 1][0];
+                meaning = juneFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 7:
+            arrayLength = sizeof(julyFlowers) / sizeof(julyFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = julyFlowers[day - 1][0];
+                meaning = julyFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 8:
+            arrayLength = sizeof(augustFlowers) / sizeof(augustFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = augustFlowers[day - 1][0];
+                meaning = augustFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 9:
+            arrayLength = sizeof(septemberFlowers) / sizeof(septemberFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = septemberFlowers[day - 1][0];
+                meaning = septemberFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 10:
+            arrayLength = sizeof(octoberFlowers) / sizeof(octoberFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = octoberFlowers[day - 1][0];
+                meaning = octoberFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 11:
+            arrayLength = sizeof(novemberFlowers) / sizeof(novemberFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = novemberFlowers[day - 1][0];
+                meaning = novemberFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
+        case 12:
+            arrayLength = sizeof(decemberFlowers) / sizeof(decemberFlowers[0]);
+            if (day >= 1 && day <= arrayLength) {
+                flower = decemberFlowers[day - 1][0];
+                meaning = decemberFlowers[day - 1][1];
+                printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", month, day, flower, meaning);
+                fprintf(file, "<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!\n", user_name, month, day, flower, meaning);
+                fclose(file);
+            }
+            break;
         }
-        break;
-    case 2:
-        arrayLength = sizeof(februaryFlowers) / sizeof(februaryFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = februaryFlowers[day - 1][0];
-            meaning = februaryFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day, 
-                flower, meaning);
-            fclose(file);
-        }
-        break;
-    case 3:
-        arrayLength = sizeof(marchFlowers) / sizeof(marchFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = marchFlowers[day - 1][0];
-            meaning = marchFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,  
-                flower, meaning);
-            fclose(file);
-        }
-        break;
-    case 4:
-        arrayLength = sizeof(aprilFlowers) / sizeof(aprilFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = aprilFlowers[day - 1][0];
-            meaning = aprilFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning); 
-            fclose(file);
-        }
-        break;
-    case 5:
-        arrayLength = sizeof(mayFlowers) / sizeof(mayFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = mayFlowers[day - 1][0];
-            meaning = mayFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file); 
-        }
-        break;
-    case 6:
-        arrayLength = sizeof(juneFlowers) / sizeof(juneFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = juneFlowers[day - 1][0];
-            meaning = juneFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file);  
-        } 
-        break;
-    case 7:
-        arrayLength = sizeof(julyFlowers) / sizeof(julyFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = julyFlowers[day - 1][0];
-            meaning = julyFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file);
-        }
-        break;
-    case 8:
-        arrayLength = sizeof(augustFlowers) / sizeof(augustFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = augustFlowers[day - 1][0];
-            meaning = augustFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file);
-        }
-        break;
-    case 9:
-        arrayLength = sizeof(septemberFlowers) / sizeof(septemberFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = septemberFlowers[day - 1][0];
-            meaning = septemberFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file);
-        }
-        break;
-    case 10:
-        arrayLength = sizeof(octoberFlowers) / sizeof(octoberFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = octoberFlowers[day - 1][0];
-            meaning = octoberFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file);
-        }
-        break;
-    case 11:
-        arrayLength = sizeof(novemberFlowers) / sizeof(novemberFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = novemberFlowers[day - 1][0];
-            meaning = novemberFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file); 
-        }
-        break;
-    case 12:
-        arrayLength = sizeof(decemberFlowers) / sizeof(decemberFlowers[0]);
-        if (day >= 1 && day <= arrayLength) {
-            flower = decemberFlowers[day - 1][0];
-            meaning = decemberFlowers[day - 1][1];
-            printf("%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", month, day,
-                flower, meaning);
-            fputs("<%s님의 탄생화>\n%d월 %d일 탄생화는 %s이며 꽃말은 %s 입니다.!", file, user_name, month, day,
-                flower, meaning);
-            fclose(file);
-        }
-        break;
     }
-
-
+else {
+    printf("파일을 열 수 없습니다.\n");
+    return;
+    }
 }

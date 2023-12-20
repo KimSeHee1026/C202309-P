@@ -12,7 +12,7 @@ typedef struct {
     char* location;
 } FlowerShop;
 
-FlowerShop flowerShopsData[] = { 
+FlowerShop flowerShopsData[] = {
      {"아뜰리에온화 [장동로 1 장동로 1번길 1층]", "동구"},
     {"플로렌 [ 동명로 26번길 15-1 1층]", "동구"},
     {"꽃디 [동명로 35 1층]", "동구"},
@@ -56,7 +56,11 @@ void freeFlowerShops(FlowerShop nearbyShops[MAX_FLOWER_SHOPS_PER_REGION]) {
     }
 }
 
-void provideFlowerShop(void) {
+void provideFlowerShop(const char* user_name, const char* filename) {
+
+    FILE* file;
+    if (fopen_s(&file, filename, "a") == 0) {
+
     char userRegion[MAX_REGION_LENGTH];
     FlowerShop nearbyShops[MAX_FLOWER_SHOPS_PER_REGION];
 
@@ -66,12 +70,20 @@ void provideFlowerShop(void) {
     getNearbyFlowerShops(userRegion, nearbyShops);
 
     printf("가까운 꽃집 추천 리스트:\n");
+    fprintf(file, "\n<%s님의 %s 가까운 꽃집 List>\n", user_name, userRegion);
 
     for (int i = 0; i < MAX_FLOWER_SHOPS_PER_REGION; ++i) {
         printf("%d. %s (%s)\n", i + 1, nearbyShops[i].name, nearbyShops[i].location);
+        fprintf(file,"%d. %s (%s)\n", i + 1, nearbyShops[i].name, nearbyShops[i].location);
         // TODO: 꽃집에 관련된 필요한 정보 출력
     }
 
+    fclose(file);
     // 메모리 해제를 provideFlowerShop 함수가 종료되기 전에 수행
     freeFlowerShops(nearbyShops);
+    }
+    else {
+        printf("파일을 열 수 없습니다.\n");
+        return 0;
+    }
 }

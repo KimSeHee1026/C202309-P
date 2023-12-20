@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void comeuser_theme(int user_theme) {
+int comeuser_theme(int user_theme, const char* filename, const char* user_name) {
     //테마 리스트 정의
     const char* theme_friend[][2] = {
    {"라일락(보라색)", "친구의 사랑, 젊은 날의 추억"},
@@ -35,38 +35,48 @@ void comeuser_theme(int user_theme) {
     };
 
     //변수 정의
-    const char* theme_flower = NULL; 
+    const char* theme_flower = NULL;
     const char* theme_meaning = NULL;
 
     //랜덤 숫자 
     int random_num = rand() % 4;
 
-    // 테마 별 확인하는 조건문
-    if (user_theme == 1) {
-        theme_flower = theme_friend[random_num][0];
-        theme_meaning = theme_friend[random_num][1];
+
+
+    FILE* file;
+    if (fopen_s(&file, filename, "a") == 0) {
+        // (생략)
+
+        // 테마 별 확인하는 조건문
+        if (user_theme == 1) {
+            theme_flower = theme_friend[random_num][0];
+            theme_meaning = theme_friend[random_num][1];
+        }
+        else if (user_theme == 2) {
+            theme_flower = theme_love[random_num][0];
+            theme_meaning = theme_love[random_num][1];
+        }
+        else if (user_theme == 3) {
+            theme_flower = theme_cheer[random_num][0];
+            theme_meaning = theme_cheer[random_num][1];
+        }
+        else if (user_theme == 4) {
+            theme_flower = theme_thank[random_num][0];
+            theme_meaning = theme_thank[random_num][1];
+        }
+        else if (user_theme == 5) {
+            theme_flower = theme_sad[random_num][0];
+            theme_meaning = theme_sad[random_num][1];
+        }
+
         printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
+        fprintf(file, "\n<%s님의 테마: 우정>\n추천 꽃: %s\n%s의 꽃말: %s\n", user_name, theme_flower, theme_flower, theme_meaning);
     }
-    else if (user_theme == 2) {
-        theme_flower = *theme_love[random_num][0];
-        theme_meaning = *theme_love[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
-    }
-    else if (user_theme == 3) {
-        theme_flower = *theme_cheer[random_num][0];
-        theme_meaning = *theme_cheer[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
-    }
-    else if (user_theme == 4) {
-        theme_flower = *theme_thank[random_num][0];
-        theme_meaning = *theme_thank[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
-    }
-    else if (user_theme == 5) {
-        theme_flower = *theme_sad[random_num][0];
-        theme_meaning = *theme_sad[random_num][1];
-        printf("%s은(는) 어떠세요? 꽃말은 %s 이랍니다!", theme_flower, theme_meaning);
+    else {
+        printf("파일을 열 수 없습니다.\n");
+        return 0;
     }
 
+    fclose(file); // 파일을 여는 부분과 닫는 부분은 한 번만 호출되어야 합니다.
     return 1;
 }
