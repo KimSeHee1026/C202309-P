@@ -71,7 +71,7 @@ int main() {
                 scanf_s(" %c", &user_lesson, 1);
 
                 if (user_lesson == 'Y') {
-                    LessonList(user1.name, user1.file_name);
+                    LessonList(user1.name, user1.file_name); 
                     break; // 올바른 입력일 경우 반복문 탈출
                 }
                 else if (user_lesson == 'N') {

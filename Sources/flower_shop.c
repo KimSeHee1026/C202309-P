@@ -38,10 +38,7 @@ void getNearbyFlowerShops(const char* region, FlowerShop nearbyShops[MAX_FLOWER_
             // 동적으로 메모리 할당하고 복사
             nearbyShops[count].name = _strdup(flowerShopsData[i].name);
             nearbyShops[count].location = _strdup(flowerShopsData[i].location);
-
-            // TODO: 꽃집에 관련된 필요한 정보 추가 복사
             count++;
-
             if (count == MAX_FLOWER_SHOPS_PER_REGION) {
                 break;
             }
@@ -57,15 +54,32 @@ void freeFlowerShops(FlowerShop nearbyShops[MAX_FLOWER_SHOPS_PER_REGION]) {
 }
 
 void provideFlowerShop(const char* user_name, const char* filename) {
-
     FILE* file;
-    if (fopen_s(&file, filename, "a") == 0) {
+    if (fopen_s(&file, filename, "a") != 0) {
+        printf("파일을 열 수 없습니다.\n");
+        return;
+    }
 
     char userRegion[MAX_REGION_LENGTH];
     FlowerShop nearbyShops[MAX_FLOWER_SHOPS_PER_REGION];
 
-    printf("사는 지역을 입력하세요 (동구, 서구, 광산구, 남구, 북구): ");
-    scanf_s("%s", userRegion, (unsigned)_countof(userRegion));
+    int isValidInput = 0; // 올바른 입력인지 여부를 나타내는 플래그
+
+    do {
+        printf("사는 지역을 입력하세요 (동구, 서구, 광산구, 남구, 북구): ");
+        scanf_s("%s", userRegion, (unsigned)_countof(userRegion));
+
+        for (int i = 0; i < MAX_REGIONS; ++i) {
+            if (strcmp(userRegion, flowerShopsData[i * MAX_FLOWER_SHOPS_PER_REGION].location) == 0) {
+                isValidInput = 1; // 올바른 입력이면 플래그를 설정하고 루프 탈출
+                break;
+            }
+        }
+
+        if (!isValidInput) {
+            printf("올바른 지역을 입력해주세요.\n");
+        }
+    } while (!isValidInput);
 
     getNearbyFlowerShops(userRegion, nearbyShops);
 
@@ -74,16 +88,10 @@ void provideFlowerShop(const char* user_name, const char* filename) {
 
     for (int i = 0; i < MAX_FLOWER_SHOPS_PER_REGION; ++i) {
         printf("%d. %s (%s)\n", i + 1, nearbyShops[i].name, nearbyShops[i].location);
-        fprintf(file,"%d. %s (%s)\n", i + 1, nearbyShops[i].name, nearbyShops[i].location);
-        // TODO: 꽃집에 관련된 필요한 정보 출력
+        fprintf(file, "%d. %s (%s)\n", i + 1, nearbyShops[i].name, nearbyShops[i].location);
     }
 
     fclose(file);
     // 메모리 해제를 provideFlowerShop 함수가 종료되기 전에 수행
     freeFlowerShops(nearbyShops);
-    }
-    else {
-        printf("파일을 열 수 없습니다.\n");
-        return 0;
-    }
 }
